@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>学习JavaScript数据结构与算法 -- Stack | Yvette</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在阅读《学习JavaScript数据结构与算法》书中，所接触到的Stack类。 什么是栈？栈是一个先进后出(FILO：First in Last out)的数据结构，新的元素会被添加在栈顶，而在栈底的元素总是旧元素 手写一个栈结构的关键API push(): 将一个元素或多个元素放入栈顶 pop(): 将栈顶的元素移出栈，并返回移除的元素,如果当前栈为空，返回undefined peek(): 获">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习JavaScript数据结构与算法 -- Stack">
+<meta property="og:url" content="http://yvette2333.github.io/2020/04/01/2-%20jsAlgorithms/index.html">
+<meta property="og:site_name" content="Yvette">
+<meta property="og:description" content="在阅读《学习JavaScript数据结构与算法》书中，所接触到的Stack类。 什么是栈？栈是一个先进后出(FILO：First in Last out)的数据结构，新的元素会被添加在栈顶，而在栈底的元素总是旧元素 手写一个栈结构的关键API push(): 将一个元素或多个元素放入栈顶 pop(): 将栈顶的元素移出栈，并返回移除的元素,如果当前栈为空，返回undefined peek(): 获">
+<meta property="article:published_time" content="2020-04-01T13:29:44.881Z">
+<meta property="article:modified_time" content="2020-04-01T14:37:54.997Z">
+<meta property="article:author" content="Yvette">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Yvette" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,700&amp;subset=korean" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <!--<div id="banner"></div>-->
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <a href="/" id="main-nav-title" class="main-nav-link">Yvette</a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives/">Archives</a>
+        
+          <a class="main-nav-link" href="/about/">about</a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-2- jsAlgorithms" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      学习JavaScript数据结构与算法 -- Stack
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在阅读《学习JavaScript数据结构与算法》书中，所接触到的Stack类。</p>
+<h2 id="什么是栈？"><a href="#什么是栈？" class="headerlink" title="什么是栈？"></a>什么是栈？</h2><p>栈是一个先进后出(FILO：First in Last out)的数据结构，新的元素会被添加在栈顶，而在栈底的元素总是旧元素</p>
+<h2 id="手写一个栈结构的关键API"><a href="#手写一个栈结构的关键API" class="headerlink" title="手写一个栈结构的关键API"></a>手写一个栈结构的关键API</h2><ul>
+<li>push(): 将一个元素或多个元素放入栈顶</li>
+<li>pop(): 将栈顶的元素移出栈，并返回移除的元素,如果当前栈为空，返回undefined</li>
+<li>peek(): 获取栈顶的元素，不对栈中的元素进行操作,如果当前栈为空，返回undefined</li>
+<li>clear(): 清空当前栈</li>
+<li>size(): 返回当前栈的大小</li>
+<li>isEmpty() : 栈中没有元素返回true,反之false</li>
+</ul>
+<h2 id="关于时间复杂度"><a href="#关于时间复杂度" class="headerlink" title="关于时间复杂度"></a>关于时间复杂度</h2><p>在处理大量数据的时候，我们需要评估如何操作数据是最高效的。在使用数组是，大部分方法的时间复杂度是 O(n) 。 即：我们需要迭代整个数组直到要找的那个元素，在最坏的情况下需要迭代数组的所有位置，其中n代表数组的长度。如果数组有大量的元素，那么所需的时间就会更长。</p>
+<h2 id="一个基于数组的栈"><a href="#一个基于数组的栈" class="headerlink" title="一个基于数组的栈"></a>一个基于数组的栈</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">class Stack &#123;</span><br><span class="line"></span><br><span class="line">  constructor () &#123;</span><br><span class="line">    &#x2F;&#x2F; 存储栈中元素</span><br><span class="line">    this.items &#x3D; []</span><br><span class="line">  &#125;</span><br><span class="line">  push (arg) &#123;</span><br><span class="line">    this.items.push(arg)</span><br><span class="line">  &#125;</span><br><span class="line">  pop () &#123;</span><br><span class="line">    if (this.isEmpty()) &#123;</span><br><span class="line">      return undefined</span><br><span class="line">    &#125;</span><br><span class="line">    return this.items.pop(arg)</span><br><span class="line">  &#125;</span><br><span class="line">  peek () &#123;</span><br><span class="line">    if (this.isEmpty()) &#123;</span><br><span class="line">      return undefined</span><br><span class="line">    &#125;</span><br><span class="line">    return this.items[this.items.length-1]</span><br><span class="line">  &#125;</span><br><span class="line">  clear () &#123;</span><br><span class="line">    this.items &#x3D; []</span><br><span class="line">  &#125;</span><br><span class="line">  size () &#123;</span><br><span class="line">    return this.items.length</span><br><span class="line">  &#125;</span><br><span class="line">  isEmpty () &#123;</span><br><span class="line">    return this.size() &#x3D;&#x3D;&#x3D; 0</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="写一个基于对象的栈"><a href="#写一个基于对象的栈" class="headerlink" title="写一个基于对象的栈"></a>写一个基于对象的栈</h2><p>由于数组处理是O(n)的时间复杂度，那么在这里会考虑使用对象来进行栈模拟。这将使栈的时间复杂度直接降到 O(1)。即：我们可以直接找到目标元素，并对其进行操作。</p>
+<p>在基于对象的栈中，我们以索引作为key来存储。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class StackObj &#123;</span><br><span class="line">  constructor () &#123;</span><br><span class="line">    this.items &#x3D; &#123;&#125;</span><br><span class="line">    this.count &#x3D; 0</span><br><span class="line">  &#125;</span><br><span class="line">  push (element) &#123;</span><br><span class="line">    this.items[this.count] &#x3D; element</span><br><span class="line">    this.count++</span><br><span class="line">  &#125;</span><br><span class="line">  pop () &#123;</span><br><span class="line">    if (this.isEmpty()) &#123;</span><br><span class="line">      return undefined</span><br><span class="line">    &#125;</span><br><span class="line">    this.count-- </span><br><span class="line">    let result &#x3D; this.items[this.count];</span><br><span class="line">    delete this.items[this.count]</span><br><span class="line">    return result</span><br><span class="line">  &#125;</span><br><span class="line">  peek () &#123;</span><br><span class="line">    if (this.isEmpty()) &#123;</span><br><span class="line">      return undefined</span><br><span class="line">    &#125;</span><br><span class="line">    return this.items[this.count-1]</span><br><span class="line">  &#125;</span><br><span class="line">  clear () &#123;</span><br><span class="line">    this.items &#x3D; &#123;&#125;</span><br><span class="line">    this.count &#x3D; 0</span><br><span class="line">  &#125;</span><br><span class="line">  size () &#123;</span><br><span class="line">    return this.count</span><br><span class="line">  &#125;</span><br><span class="line">  isEmpty () &#123;</span><br><span class="line">    return this.count &#x3D;&#x3D;&#x3D; 0</span><br><span class="line">  &#125;</span><br><span class="line">  &#x2F;&#x2F; 模拟数组读取元素</span><br><span class="line">  &#x2F;&#x2F;该函数时间复杂度 为O(this.count)</span><br><span class="line">  toString () &#123; </span><br><span class="line">    if (this.isEmpty()) &#123; return &#39;&#39;&#125;</span><br><span class="line">    let objString &#x3D; &#96;$&#123;this.items[0]&#125;&#96;;</span><br><span class="line">    for (let i &#x3D; 0; i&lt; this.count; i++) &#123;</span><br><span class="line">      objString &#x3D; &#96;$&#123;objString&#125;,$&#123;this.items[i]&#125;&#96;</span><br><span class="line">    &#125;</span><br><span class="line">    return objString</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="可以用栈处理什么问题？"><a href="#可以用栈处理什么问题？" class="headerlink" title="可以用栈处理什么问题？"></a>可以用栈处理什么问题？</h2><p>栈可以存储访问过的任务或路径、撤销的操作。这里可以通过栈来解决十进制转二进制问题、或者任意进制的转换</p>
+<h3 id="十进制转二进制"><a href="#十进制转二进制" class="headerlink" title="十进制转二进制"></a>十进制转二进制</h3><p>思路： 通过传入的数字， 通过 / 和 % 运算符来获取对应的进制，将余数放入栈中，输出的时候，将余数移除（由栈顶向外输出）。ps:二进制是满二进一.</p>
+<p>以下案例中，会使用基于数组的栈进行处理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">function decimalToBinary(decNumber) &#123;</span><br><span class="line"></span><br><span class="line">  let remStack &#x3D; new Stack();</span><br><span class="line">  let number &#x3D; decNumber;</span><br><span class="line">  let rem; &#x2F;&#x2F; 余数</span><br><span class="line">  let binaryString &#x3D; &#39;&#39;; &#x2F;&#x2F; 返回的二进制数字</span><br><span class="line"></span><br><span class="line">  while (number &gt; 0) &#123;</span><br><span class="line">    rem &#x3D; Math.floor(number % 2)</span><br><span class="line">    remStack.push(rem)</span><br><span class="line">    number &#x3D;  Math.floor(number&#x2F;2)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  while (!remStack.isEmpty()) &#123;</span><br><span class="line">    binaryString +&#x3D; remStack.pop().toString(); &#x2F;&#x2F; 拼接出栈的字符串</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return binaryString </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(decimalToBinary(10))</span><br><span class="line">console.log(decimalToBinary(233))</span><br><span class="line">console.log(decimalToBinary(1000))</span><br></pre></td></tr></table></figure>
+
+<h3 id="任意进制的转换"><a href="#任意进制的转换" class="headerlink" title="任意进制的转换"></a>任意进制的转换</h3><p>前置知识： 计算机科学中的进制为2～36进制，其中包含字母。<br>我们只需要对以上的函数进行一个封装，以进制作为除数，然后在输出的时候，对值进行转换即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">function baseConverter(decNumber,base) &#123;</span><br><span class="line"></span><br><span class="line">  let remStack &#x3D; new Stack();</span><br><span class="line">  const digists &#x3D; &#39;0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ&#39;</span><br><span class="line">  let number &#x3D; decNumber;</span><br><span class="line">  let rem; &#x2F;&#x2F; 余数</span><br><span class="line">  let baseString &#x3D; &#39;&#39;; &#x2F;&#x2F; 返回的二进制数字</span><br><span class="line"></span><br><span class="line">  while (number &gt; 0) &#123;</span><br><span class="line">    rem &#x3D; Math.floor(number % base)</span><br><span class="line">    remStack.push(rem)</span><br><span class="line">    number &#x3D;  Math.floor(number&#x2F;base)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  while (!remStack.isEmpty()) &#123;</span><br><span class="line">    baseString +&#x3D; digists[remStack.pop()]; &#x2F;&#x2F; 拼接出栈的字符串</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return baseString </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">console.log(baseConverter(100345,10)) &#x2F;&#x2F; 100345</span><br><span class="line">console.log(baseConverter(100345,35)) &#x2F;&#x2F; 2BW0</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yvette2333.github.io/2020/04/01/2-%20jsAlgorithms/" data-id="ckwp3urmx00033lmtbgf4f0ij" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/04/01/3-%20jsAlgorithms/" id="article-nav-newer" class="article-nav-link-wrap">
+      <span class="article-nav-caption">Newer</span>
+      <div class="article-nav-title">
+        
+          学习JavaScript数据结构与算法 -- Queue
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/03/31/1-%20jsAlgorithms/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-caption">Older</span>
+      <div class="article-nav-title">学习JavaScript数据结构与算法 -- ES6数组</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 Yvette<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> with 
+      theme_by <a href="http://hexo.io/" target="_blank">mango</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives/" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about/" class="mobile-nav-link">about</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

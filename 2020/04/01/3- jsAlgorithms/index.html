@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>学习JavaScript数据结构与算法 -- Queue | Yvette</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在阅读《学习JavaScript数据结构与算法》书中，所接触到的Queue类。 什么是队列？队列是一个先进先出(FIFO：First in First out)的数据结构，旧元素会被添加在队头，而新元素总被添加到队尾。 手写一个队列结构的关键API enqueue(): 将一个元素或多个元素放入队尾 dequeue(): 将队头的元素移出队列，并返回移除的元素,如果当前队列为空，返回undefin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习JavaScript数据结构与算法 -- Queue">
+<meta property="og:url" content="http://yvette2333.github.io/2020/04/01/3-%20jsAlgorithms/index.html">
+<meta property="og:site_name" content="Yvette">
+<meta property="og:description" content="在阅读《学习JavaScript数据结构与算法》书中，所接触到的Queue类。 什么是队列？队列是一个先进先出(FIFO：First in First out)的数据结构，旧元素会被添加在队头，而新元素总被添加到队尾。 手写一个队列结构的关键API enqueue(): 将一个元素或多个元素放入队尾 dequeue(): 将队头的元素移出队列，并返回移除的元素,如果当前队列为空，返回undefin">
+<meta property="article:published_time" content="2020-04-01T14:39:28.756Z">
+<meta property="article:modified_time" content="2020-04-01T15:41:39.967Z">
+<meta property="article:author" content="Yvette">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Yvette" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,700&amp;subset=korean" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <!--<div id="banner"></div>-->
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <a href="/" id="main-nav-title" class="main-nav-link">Yvette</a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives/">Archives</a>
+        
+          <a class="main-nav-link" href="/about/">about</a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-3- jsAlgorithms" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      学习JavaScript数据结构与算法 -- Queue
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在阅读《学习JavaScript数据结构与算法》书中，所接触到的Queue类。</p>
+<h2 id="什么是队列？"><a href="#什么是队列？" class="headerlink" title="什么是队列？"></a>什么是队列？</h2><p>队列是一个先进先出(FIFO：First in First out)的数据结构，旧元素会被添加在队头，而新元素总被添加到队尾。</p>
+<h2 id="手写一个队列结构的关键API"><a href="#手写一个队列结构的关键API" class="headerlink" title="手写一个队列结构的关键API"></a>手写一个队列结构的关键API</h2><ul>
+<li>enqueue(): 将一个元素或多个元素放入队尾</li>
+<li>dequeue(): 将队头的元素移出队列，并返回移除的元素,如果当前队列为空，返回undefined</li>
+<li>peek(): 获取队头的元素，不对队列中的元素进行操作,如果当前队列为空，返回undefined</li>
+<li>clear(): 清空当前队列</li>
+<li>size(): 返回当前队列的大小</li>
+<li>isEmpty() : 队列中没有元素返回true,反之false</li>
+<li>toString(): 以字符串形式获取队列中的元素</li>
+</ul>
+<h2 id="写一个基于对象的队列"><a href="#写一个基于对象的队列" class="headerlink" title="写一个基于对象的队列"></a>写一个基于对象的队列</h2><p>由于时间复杂度的问题，在模拟队列的时候，仍然使用对象作为基础来做操作。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">class Queue &#123;</span><br><span class="line">  constructor () &#123;</span><br><span class="line">    this.items &#x3D; &#123;&#125; &#x2F;&#x2F; 队列</span><br><span class="line">    this.lowestCount &#x3D; 0  &#x2F;&#x2F; 追踪队头的索引</span><br><span class="line">    this.count &#x3D; 0 &#x2F;&#x2F; 队列数量</span><br><span class="line">  &#125;</span><br><span class="line">  enqueue (element) &#123;</span><br><span class="line">    this.items[this.count] &#x3D; element</span><br><span class="line">    this.count++</span><br><span class="line">  &#125;</span><br><span class="line">  dequeue () &#123;</span><br><span class="line">    if (this.isEmpty()) &#123;</span><br><span class="line">      return undefined</span><br><span class="line">    &#125;</span><br><span class="line">    let result &#x3D; this.items[this.lowestCount]; &#x2F;&#x2F;读取队头数据</span><br><span class="line">    delete this.items[this.lowestCount]</span><br><span class="line">    this.lowestCount++ &#x2F;&#x2F;队头索引向后移动 </span><br><span class="line">    return result</span><br><span class="line">  &#125;</span><br><span class="line">  peek () &#123;</span><br><span class="line">    if (this.isEmpty()) &#123;</span><br><span class="line">      return undefined</span><br><span class="line">    &#125;</span><br><span class="line">    return this.items[this.lowestCount-1]</span><br><span class="line">  &#125;</span><br><span class="line">  clear () &#123;</span><br><span class="line">    this.items &#x3D; &#123;&#125;</span><br><span class="line">    this.count &#x3D; 0</span><br><span class="line">    this.lowestCount &#x3D; 0</span><br><span class="line">  &#125;</span><br><span class="line">  size () &#123;</span><br><span class="line">    return this.count - this.lowestCount</span><br><span class="line">  &#125;</span><br><span class="line">  isEmpty () &#123;</span><br><span class="line">    &#x2F;&#x2F; 如果队列长度与队头的索引相差为0，则队列为空</span><br><span class="line">    return this.size() &#x3D;&#x3D;&#x3D; 0</span><br><span class="line">  &#125;</span><br><span class="line">  &#x2F;&#x2F; 模拟数组读取元素</span><br><span class="line">  &#x2F;&#x2F;该函数时间复杂度 为O(this.count - this.lowestCount)</span><br><span class="line">  toString () &#123; </span><br><span class="line">    if (this.isEmpty()) &#123; return &#39;&#39;&#125;</span><br><span class="line">    &#x2F;&#x2F; 由于我们无法确定队头的索引是多少，需要使用 lowestCount来确定循环起始位置, 而不是栈中的0(栈底)</span><br><span class="line">    let objString &#x3D; &#96;$&#123;this.items[this.lowestCount]&#125;&#96;;</span><br><span class="line">    for (let i &#x3D; this.lowestCount + 1; i &lt; this.count; i++) &#123;</span><br><span class="line">      objString &#x3D; &#96;$&#123;objString&#125;,$&#123;this.items[i]&#125;&#96;</span><br><span class="line">    &#125;</span><br><span class="line">    return objString</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="什么是双端队列？"><a href="#什么是双端队列？" class="headerlink" title="什么是双端队列？"></a>什么是双端队列？</h2><p>双端队列（deque : double-ended queue），是一种可以允许我们同时从队头或队尾进行添加或移除的一种特殊队列。<br>其遵守 先进先出和先进后出的原则，那么我们可以把它看成一个Stack 和 Queue 的结合体。</p>
+<h2 id="手写一个双端队列结构的关键API"><a href="#手写一个双端队列结构的关键API" class="headerlink" title="手写一个双端队列结构的关键API"></a>手写一个双端队列结构的关键API</h2><p>思路： 由于是Stack 和 Queue 的结合体，公用部分的size、clear、isEmpty、toString将与队列保持一致。</p>
+<ul>
+<li>clear(): 清空当前队列</li>
+<li>size(): 返回当前队列的大小</li>
+<li>isEmpty() : 队列中没有元素返回true,反之false</li>
+<li>toString(): 以字符串形式获取队列中的元素</li>
+</ul>
+<p>由于需要两端同时支持删除或添加，更改API如下：</p>
+<ul>
+<li>addFront(element): 将一个元素或多个元素放入队头</li>
+<li>addBack(element): 将一个元素或多个元素放入队尾 (该特性与Queue.enqueue保持一致)</li>
+<li>removeFront():将队头的元素移出队列，并返回移除的元素,如果当前队列为空，返回undefined (该特性与Queue.dequeue保持一致)</li>
+<li>removeFrontBack(): 将队尾的元素移出队列，并返回移除的元素,如果当前队列为空，返回undefined (该特性与Stack.pop保持一致)</li>
+<li>peekFront(): 获取队头的元素，不对队列中的元素进行操作,如果当前队列为空，返回undefined(该特性与Queue.peek保持一致)</li>
+<li>peekBack(): 获取队尾的元素，不对队列中的元素进行操作,如果当前队列为空，返回undefined(该特性与Stack.peek保持一致)</li>
+</ul>
+<h2 id="写一个基于对象的双端队列"><a href="#写一个基于对象的双端队列" class="headerlink" title="写一个基于对象的双端队列"></a>写一个基于对象的双端队列</h2><p>由于时间复杂度的问题，在模拟队列的时候，仍然使用对象作为基础来做操作。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line">class Deque &#123;</span><br><span class="line">  constructor() &#123;</span><br><span class="line">    this.items &#x3D; &#123;&#125; &#x2F;&#x2F; 队列</span><br><span class="line">    this.lowestCount &#x3D; 0  &#x2F;&#x2F; 追踪队头的索引</span><br><span class="line">    this.count &#x3D; 0 &#x2F;&#x2F; 队列数量</span><br><span class="line">  &#125;</span><br><span class="line">  addFront(element) &#123;</span><br><span class="line">    if (this.isEmpty()) &#123;</span><br><span class="line">      &#x2F;&#x2F; 双端队列为空</span><br><span class="line">      this.addBack()</span><br><span class="line">    &#125; else if (this.lowestCount &gt; 0) &#123;</span><br><span class="line">      &#x2F;&#x2F; 双端队列的队头曾经被移除过</span><br><span class="line">      this.lowestCount--</span><br><span class="line">      this.items[this.lowestCount] &#x3D; element</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      &#x2F;&#x2F; this.lowestCount &#x3D; 0 &amp;&amp; this.count !&#x3D;&#x3D;0 </span><br><span class="line">      &#x2F;&#x2F; 但是我们需要在-1位置 添加一个元素，而我们需要保持双端索引为0</span><br><span class="line">      &#x2F;&#x2F; 整体元素向后移动一位</span><br><span class="line">      for (let i &#x3D; this.count; i &gt; 0; i--) &#123;</span><br><span class="line">        this.items[i] &#x3D; this.items[i-1]</span><br><span class="line">      &#125;</span><br><span class="line">      this.count++;</span><br><span class="line">      this.lowestCount &#x3D; 0;</span><br><span class="line">      this.items[0] &#x3D; element; &#x2F;&#x2F; 将新增的元素放在队头</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  addBack(element) &#123;</span><br><span class="line">    &#x2F;&#x2F; 与Queue.enquque保持一致</span><br><span class="line">    this.items[this.count] &#x3D; element</span><br><span class="line">    this.count++</span><br><span class="line">  &#125;</span><br><span class="line">  removeFront()&#123;</span><br><span class="line">    &#x2F;&#x2F; 同Queue.dequeue</span><br><span class="line">    if (this.isEmpty()) &#123;</span><br><span class="line">      return undefined</span><br><span class="line">    &#125;</span><br><span class="line">    let result &#x3D; this.items[this.lowestCount]; &#x2F;&#x2F;读取队头数据</span><br><span class="line">    delete this.items[this.lowestCount]</span><br><span class="line">    this.lowestCount++ &#x2F;&#x2F;队头索引向后移动 </span><br><span class="line">    return result</span><br><span class="line">  &#125;</span><br><span class="line">  removeBack()&#123;</span><br><span class="line">    &#x2F;&#x2F; 同Stack.pop</span><br><span class="line">    if (this.isEmpty()) &#123;</span><br><span class="line">      return undefined</span><br><span class="line">    &#125;</span><br><span class="line">    this.count--</span><br><span class="line">    let result &#x3D; this.items[this.count];</span><br><span class="line">    delete this.items[this.count]</span><br><span class="line">    return result</span><br><span class="line">  &#125;</span><br><span class="line">  peekFront()&#123;</span><br><span class="line">    &#x2F;&#x2F; 同Queue.peek</span><br><span class="line">    if (this.isEmpty()) &#123;</span><br><span class="line">      return undefined</span><br><span class="line">    &#125;</span><br><span class="line">    return this.items[this.lowestCount - 1]</span><br><span class="line">  &#125;</span><br><span class="line">  peekBack() &#123;</span><br><span class="line">    if (this.isEmpty()) &#123;</span><br><span class="line">      return undefined</span><br><span class="line">    &#125;</span><br><span class="line">    return this.items[this.count - 1]</span><br><span class="line">  &#125;</span><br><span class="line">  &#x2F;&#x2F; 与队列保持一致</span><br><span class="line">  clear() &#123;</span><br><span class="line">    this.items &#x3D; &#123;&#125;</span><br><span class="line">    this.count &#x3D; 0</span><br><span class="line">    this.lowestCount &#x3D; 0</span><br><span class="line">  &#125;</span><br><span class="line">  size() &#123;</span><br><span class="line">    return this.count - this.lowestCount</span><br><span class="line">  &#125;</span><br><span class="line">  isEmpty() &#123;</span><br><span class="line">    &#x2F;&#x2F; 如果队列长度与队头的索引相差为0，则队列为空</span><br><span class="line">    return this.size() &#x3D;&#x3D;&#x3D; 0</span><br><span class="line">  &#125;</span><br><span class="line">  toString() &#123;</span><br><span class="line">    if (this.isEmpty()) &#123; return &#39;&#39; &#125;</span><br><span class="line">    &#x2F;&#x2F; 由于我们无法确定队头的索引是多少，需要使用 lowestCount来确定循环起始位置, 而不是栈中的0(栈底)</span><br><span class="line">    let objString &#x3D; &#96;$&#123;this.items[this.lowestCount]&#125;&#96;;</span><br><span class="line">    for (let i &#x3D; this.lowestCount + 1; i &lt; this.count; i++) &#123;</span><br><span class="line">      objString &#x3D; &#96;$&#123;objString&#125;,$&#123;this.items[i]&#125;&#96;</span><br><span class="line">    &#125;</span><br><span class="line">    return objString</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="关于双端队列的实践"><a href="#关于双端队列的实践" class="headerlink" title="关于双端队列的实践"></a>关于双端队列的实践</h2><h3 id="循环队列"><a href="#循环队列" class="headerlink" title="循环队列"></a>循环队列</h3><p>思路： 将队头推出后，加入到队尾。即形成一个循环。</p>
+<h3 id="回文检查器"><a href="#回文检查器" class="headerlink" title="回文检查器"></a>回文检查器</h3><p>思路： 将所有字符遍历加入队尾，然后使用removeFront、removeBack进行对比，直到队列size&lt;1,一旦对比失效，立刻退出检查，抛出错误。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yvette2333.github.io/2020/04/01/3-%20jsAlgorithms/" data-id="ckwp3urmx00043lmt75jt6bnf" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/04/23/4-%20ReactHooks/" id="article-nav-newer" class="article-nav-link-wrap">
+      <span class="article-nav-caption">Newer</span>
+      <div class="article-nav-title">
+        
+          4- ReactHooks
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/04/01/2-%20jsAlgorithms/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-caption">Older</span>
+      <div class="article-nav-title">学习JavaScript数据结构与算法 -- Stack</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 Yvette<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> with 
+      theme_by <a href="http://hexo.io/" target="_blank">mango</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives/" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about/" class="mobile-nav-link">about</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
